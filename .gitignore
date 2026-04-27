@@ -1,0 +1,17 @@
+# Python environments
+.env/
+.venv/
+venv/
+env/
+aXemg-env/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Outputs folders anywhere in the project
+outputs/
+*/outputs/
+**/outputs/

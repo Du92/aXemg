@@ -1,0 +1,85 @@
+run:
+  name: constraint_cleaned_2d_dirichlet_poisson_mixed_boundary
+
+grid:
+  ndim: 2
+  shape: [128, 128]
+  bounds:
+    - [-50.0, 50.0]
+    - [-50.0, 50.0]
+  nghost: 3
+
+geometry:
+  type: flat
+
+physics:
+  m_axion: 0.2
+  g_agamma: 0.03
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: true
+  include_axion_em_coupling: true
+
+numerics:
+  dt: 0.01
+  t_final: 8.0
+  output_every: 100
+  derivative_order: 2
+
+boundary:
+  type: mixed
+  default:
+    type: outflow
+  fields:
+    a:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [0.0, 0.0]
+    Pi:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [0.0, 0.0]
+    E:
+      type: outflow
+    B:
+      type: outflow
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_uniform_Bxy_constraint_solved_2d
+  axion_amplitude: 1.0
+  axion_center: [0.0, 0.0]
+  axion_width: [8.0, 8.0]
+  axion_momentum_amplitude: 0.3
+  g_agamma: 0.03
+  B0: [1.0, 0.5, 0.0]
+  E0: [0.0, 0.0, 0.0]
+  dt_for_cleaning: 0.01
+
+  poisson_solver: jacobi
+  poisson_boundary: dirichlet
+  dirichlet_value: 0.0
+  max_iterations: 20000
+  tolerance: 1.0e-7
+  omega: 0.6666666667
+
+snapshots:
+  save: false
+
+diagnostics:
+  full_2d_report: true
+  center: [0.0, 0.0]
+
+output:
+  directory: outputs/config_constraint_cleaned_2d_dirichlet_poisson_mixed_boundary

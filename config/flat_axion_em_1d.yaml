@@ -1,0 +1,57 @@
+run:
+  name: flat_axion_em_1d
+
+grid:
+  ndim: 1
+  shape: [1024]
+  bounds:
+    - [0.0, 100.0]
+  nghost: 3
+
+geometry:
+  type: flat
+
+physics:
+  m_axion: 0.2
+  g_agamma: 0.03
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: true
+  include_axion_em_coupling: true
+
+numerics:
+  dt: 0.01
+  t_final: 40.0
+  output_every: 100
+  derivative_order: 2
+
+boundary:
+  type: periodic
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_uniform_magnetic_field_1d
+  axion_amplitude: 1.0
+  axion_center: 50.0
+  axion_width: 6.0
+  axion_momentum_amplitude: 0.4
+  B0: [1.0, 0.0, 0.0]
+  E0: [0.0, 0.0, 0.0]
+
+snapshots:
+  save: false
+
+diagnostics:
+  full_2d_report: false
+
+output:
+  directory: outputs/config_flat_axion_em_1d

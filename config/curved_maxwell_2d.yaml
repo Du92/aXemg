@@ -1,0 +1,71 @@
+run:
+  name: curved_maxwell_2d
+
+grid:
+  ndim: 2
+  shape: [192, 192]
+  bounds:
+    - [-60.0, 60.0]
+    - [-60.0, 60.0]
+  nghost: 3
+
+geometry:
+  type: smooth_compact_object_2d
+  conformal_amplitude: 4.0
+  compactness: 0.25
+  radius: 12.0
+  center: [0.0, 0.0]
+  plane: xy
+  plane_offset: 2.0
+  lapse_floor: 0.2
+
+physics:
+  m_axion: 0.0
+  g_agamma: 0.0
+
+potential:
+  type: zero
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: false
+  evolve_maxwell: true
+  include_axion_em_coupling: false
+
+numerics:
+  dt: 0.002
+  t_final: 5.0
+  output_every: 100
+  derivative_order: 2
+
+boundary:
+  type: outflow
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_em_ring_2d
+  axion_amplitude: 0.0
+  axion_center: [0.0, 0.0]
+  axion_width: [8.0, 8.0]
+  axion_momentum_amplitude: 0.0
+  em_amplitude: 0.2
+  em_center: [0.0, 0.0]
+  em_width: [12.0, 12.0]
+  background_Bz: 1.0
+
+snapshots:
+  save: true
+  every: 100
+  directory: snapshots
+  prefix: curved_maxwell_2d
+
+diagnostics:
+  full_2d_report: true
+  center: [0.0, 0.0]
+
+output:
+  directory: outputs/config_curved_maxwell_2d

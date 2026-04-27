@@ -1,0 +1,74 @@
+run:
+  name: gw_background_1d
+
+grid:
+  ndim: 1
+  shape: [1024]
+  bounds:
+    - [0.0, 100.0]
+  nghost: 3
+
+geometry:
+  type: gw_tt_1d
+  h_plus_amplitude: 0.05
+  h_cross_amplitude: 0.03
+  wavelength: 50.0
+  omega:
+  phase_plus: 0.0
+  phase_cross: 0.5
+  packet: false
+  packet_center: 50.0
+  packet_width: 15.0
+  direction: 1
+  compute_K_exact: true
+
+physics:
+  m_axion: 0.2
+  g_agamma: 0.03
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: true
+  include_axion_em_coupling: true
+
+numerics:
+  dt: 0.005
+  t_final: 30.0
+  output_every: 200
+  derivative_order: 2
+
+boundary:
+  type: periodic
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_em_wave_background_Bx_1d
+  axion_amplitude: 1.0
+  axion_center: 35.0
+  axion_width: 7.0
+  axion_momentum_amplitude: 0.35
+  em_amplitude: 0.15
+  em_center: 40.0
+  em_width: 8.0
+  background_Bx: 1.0
+  propagation: right
+
+snapshots:
+  save: true
+  every: 200
+  directory: snapshots
+  prefix: gw_1d
+
+diagnostics:
+  full_2d_report: false
+
+output:
+  directory: outputs/config_gw_background_1d

@@ -1,0 +1,64 @@
+run:
+  name: schwarzschild_axion_1d
+
+grid:
+  ndim: 1
+  shape: [1024]
+  bounds:
+    - [4.0, 120.0]
+  nghost: 3
+
+geometry:
+  type: schwarzschild_isotropic_1d
+  mass: 1.5
+  center: 0.0
+  use_absolute_radius: false
+  radial_floor: 1.0e-6
+  lapse_floor: 1.0e-4
+  horizon_buffer: 1.0e-3
+
+physics:
+  m_axion: 0.15
+  g_agamma: 0.0
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: false
+  include_axion_em_coupling: false
+
+numerics:
+  dt: 0.005
+  t_final: 45.0
+  output_every: 200
+  derivative_order: 2
+
+boundary:
+  type: outflow
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_packet_1d
+  amplitude: 1.0
+  center: 35.0
+  width: 5.0
+  momentum_amplitude: 0.4
+
+snapshots:
+  save: true
+  every: 200
+  directory: snapshots
+  prefix: schwarzschild_axion_1d
+
+diagnostics:
+  full_2d_report: false
+
+output:
+  directory: outputs/config_schwarzschild_axion_1d

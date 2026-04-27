@@ -1,0 +1,100 @@
+run:
+  name: gw_axion_halo_1d
+
+grid:
+  ndim: 1
+  shape: [1024]
+  bounds:
+    - [0.0, 120.0]
+  nghost: 3
+
+geometry:
+  type: flat
+  h_plus_amplitude: 0.05
+  h_cross_amplitude: 0.03
+  wavelength: 50.0
+  omega:
+  phase_plus: 0.0
+  phase_cross: 0.5
+  packet: true
+  packet_center: 25.0
+  packet_width: 25.0
+  direction: 1
+  compute_K_exact: true
+
+physics:
+  m_axion: 0.15
+  g_agamma: 0.03
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: true
+  include_axion_em_coupling: true
+
+numerics:
+  dt: 0.005
+  t_final: 45.0
+  output_every: 200
+  derivative_order: 2
+
+boundary:
+  type: mixed
+  default:
+    type: outflow
+  fields:
+    a:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [60.0, 0.0]
+    Pi:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [60.0, 0.0]
+    E:
+      type: outflow
+    B:
+      type: outflow
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: axion_halo_gradient_magnetized_1d
+  axion_amplitude: 1.0
+  axion_center: 45.0
+  axion_width: 10.0
+  axion_background: 0.0
+  gradient_amplitude: 0.35
+  gradient_width: 12.0
+  Pi_amplitude: 0.15
+  Pi_width: 10.0
+  g_agamma: 0.03
+  background_Bx: 1.0
+  background_By: 0.0
+  background_Bz: 0.0
+  em_pulse_amplitude: 0.15
+  em_pulse_center: 40.0
+  em_pulse_width: 8.0
+  em_pulse_polarization: y
+  em_pulse_propagation: right
+  constraint_solved_Ex: true
+
+snapshots:
+  save: true
+  every: 200
+  directory: snapshots
+  prefix: gw_axion_halo_1d
+
+diagnostics:
+  full_2d_report: false
+
+output:
+  directory: outputs/config_flat_axion_halo_1d

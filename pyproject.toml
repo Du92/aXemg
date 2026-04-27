@@ -1,0 +1,13 @@
+[project]
+name = "axion-em-gr"
+version = "0.1.0"
+description = "Modular 3+1 axion electrodynamics solver in curved spacetime"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pyyaml",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

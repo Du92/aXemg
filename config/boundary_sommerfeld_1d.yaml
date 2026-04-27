@@ -1,0 +1,58 @@
+run:
+  name: boundary_sommerfeld_1d
+
+grid:
+  ndim: 1
+  shape: [1024]
+  bounds:
+    - [0.0, 100.0]
+  nghost: 3
+
+geometry:
+  type: flat
+
+physics:
+  m_axion: 0.1
+  g_agamma: 0.0
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: false
+  include_axion_em_coupling: false
+
+numerics:
+  dt: 0.01
+  t_final: 60.0
+  output_every: 200
+  derivative_order: 2
+
+boundary:
+  type: sommerfeld
+  asymptotic_value: 0.0
+  wave_speed: 1.0
+  center: [50.0, 0.0]
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: gaussian_axion_packet_1d
+  amplitude: 1.0
+  center: 30.0
+  width: 5.0
+  momentum_amplitude: 0.7
+
+snapshots:
+  save: false
+
+diagnostics:
+  full_2d_report: false
+
+output:
+  directory: outputs/config_boundary_sommerfeld_1d
