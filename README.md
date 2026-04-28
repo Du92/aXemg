@@ -31,90 +31,33 @@ The package is intended as a research and prototyping tool for reduced models of
 
 The evolved axion variables are
 
-\[
-a(t,x^i), \qquad \Pi(t,x^i).
-\]
+$$a(t,x^i), \qquad \Pi(t,x^i).$$
 
 The electromagnetic variables are the Eulerian electric and magnetic fields
 
-\[
-E^i(t,x^j), \qquad B^i(t,x^j).
-\]
+$$E^i(t,x^j), \qquad B^i(t,x^j).$$
 
 The axion sector is evolved according to
 
-\[
-\partial_t a
-=
-N\Pi+\beta^i\partial_i a,
-\]
+$$\partial_t a = N\Pi+\beta^i\partial_i a,$$
 
-\[
-\partial_t\Pi
-=
-\beta^i\partial_i\Pi
-+
-N
-\left[
-D_iD^i a
-+
-K\Pi
--
-D_i(\ln N)D^i a
--
-\frac{dV}{da}
--
-g_{a\gamma}E_iB^i
-\right].
-\]
+$$\partial_t\Pi = \beta^i\partial_i\Pi + N \left[ D_iD^i a + K\Pi - D_i(\ln N)D^i a - \frac{dV}{da} - g_{a\gamma}E_iB^i \right].$$
 
 The electromagnetic constraints are
 
-\[
-D_iB^i=0,
-\]
+$$D_iB^i=0,$$
 
-\[
-D_iE^i
-=
-\rho
--
-g_{a\gamma}B^iD_i a.
-\]
+$$D_iE^i = \rho - g_{a\gamma}B^iD_i a.$$
 
 The Maxwell evolution equations are
 
-\[
-\partial_t B^i
-=
-\mathcal{L}_\beta B^i
-+
-NK B^i
--
-\epsilon^{ijk}D_j(NE_k),
-\]
+$$\partial_t B^i = \mathcal{L}_\beta B^i + NK B^i - \epsilon^{ijk}D_j(NE_k),$$
 
-\[
-\partial_t E^i
-=
-\mathcal{L}_\beta E^i
-+
-NK E^i
--
-\epsilon^{ijk}D_j(NB_k)
-+
-Nj^i
-+
-g_{a\gamma}N\epsilon^{ijk}E_kD_ja
--
-g_{a\gamma}N\Pi B^i.
-\]
+$$\partial_t E^i = \mathcal{L}_\beta E^i + NK E^i - \epsilon^{ijk}D_j(NB_k) + Nj^i + g_{a\gamma}N\epsilon^{ijk}E_kD_ja - g_{a\gamma}N\Pi B^i.$$
 
 The default potential is
 
-\[
-V(a)=\frac{1}{2}m_a^2a^2,
-\]
+$$V(a)=\frac{1}{2}m_a^2a^2,$$
 
 but other potentials can be added through the potential interface.
 
