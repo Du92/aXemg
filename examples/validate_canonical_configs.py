@@ -32,6 +32,8 @@ def main() -> None:
                 raise FileNotFoundError(case.config_path)
 
             config = load_yaml_config(case.config_path)
+            output_dir = config.get("output", {}).get("directory", "outputs/from_config")
+
             objects = build_simulation_objects(config)
 
             grid = objects["grid"]
@@ -40,8 +42,9 @@ def main() -> None:
             state0 = build_initial_state(config, grid, metric=metric)
 
             print("  OK")
-            print(f"  ndim: {grid.ndim}")
-            print(f"  shape: {grid.shape}")
+            print(f"  ndim:       {grid.ndim}")
+            print(f"  shape:      {grid.shape}")
+            print(f"  output_dir: {output_dir}")
 
         except Exception as exc:
             print(f"  FAILED: {exc}")
