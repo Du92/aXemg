@@ -1,0 +1,4 @@
+[console_scripts]
+axemg-canonical = axion_em_gr.cli.canonical:main
+axemg-run = axion_em_gr.cli.run:main
+axemg-sweep-plot = axion_em_gr.cli.sweep_plot:main

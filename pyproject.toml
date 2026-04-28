@@ -1,13 +1,89 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
 [project]
 name = "axion-em-gr"
 version = "0.1.0"
-description = "Modular 3+1 axion electrodynamics solver in curved spacetime"
+description = "Modular Python framework for axion electrodynamics in fixed 3+1 curved spacetimes."
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [
-    "numpy",
-    "matplotlib",
-    "pyyaml",
+license = { text = "MIT" }
+
+authors = [
+    { name = "Duvier Suarez Fontanella" }
 ]
 
-[tool.setuptools.packages.find]
-where = ["."]
+keywords = [
+    "axion",
+    "electrodynamics",
+    "general relativity",
+    "numerical relativity",
+    "Maxwell",
+    "scientific computing",
+    "compact objects",
+    "gravitational waves"
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "PyYAML>=6.0",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+animations = [
+    "pillow>=10.0",
+]
+
+all = [
+    "pytest>=8.0",
+    "pillow>=10.0",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/Du92/aXemg"
+Repository = "https://github.com/Du92/aXemg"
+Documentation = "https://github.com/Du92/aXemg"
+
+
+[project.scripts]
+axemg-run = "axion_em_gr.cli.run:main"
+axemg-canonical = "axion_em_gr.cli.canonical:main"
+axemg-sweep-plot = "axion_em_gr.cli.sweep_plot:main"
+
+
+[tool.setuptools]
+packages = { find = { where = ["."] } }
+
+
+[tool.setuptools.package-data]
+axion_em_gr = ["py.typed"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra"
+filterwarnings = [
+    "ignore::RuntimeWarning",
+]

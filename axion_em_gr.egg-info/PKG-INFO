@@ -1,8 +1,123 @@
 Metadata-Version: 2.4
 Name: axion-em-gr
 Version: 0.1.0
-Summary: Modular 3+1 axion electrodynamics solver in curved spacetime
+Summary: Modular Python framework for axion electrodynamics in fixed 3+1 curved spacetimes.
+Author: Duvier Suarez Fontanella
+License: MIT
+Project-URL: Homepage, https://github.com/Du92/aXemg
+Project-URL: Repository, https://github.com/Du92/aXemg
+Project-URL: Documentation, https://github.com/Du92/aXemg
+Keywords: axion,electrodynamics,general relativity,numerical relativity,Maxwell,scientific computing,compact objects,gravitational waves
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: POSIX :: Linux
 Requires-Python: >=3.10
-Requires-Dist: numpy
-Requires-Dist: matplotlib
-Requires-Dist: pyyaml
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: matplotlib>=3.7
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Provides-Extra: animations
+Requires-Dist: pillow>=10.0; extra == "animations"
+Provides-Extra: all
+Requires-Dist: pytest>=8.0; extra == "all"
+Requires-Dist: pillow>=10.0; extra == "all"
+
+# axion_em_gr
+
+`axion_em_gr` is a modular Python framework for exploratory numerical studies of axion electrodynamics in fixed 3+1 curved spacetimes.
+
+The code evolves an axion-like scalar field coupled to electromagnetic fields using a 3+1 formulation. It supports flat-space, weak gravitational-wave backgrounds, compact-object-inspired metrics, prescribed rotating magnetic dipoles, curved two-dimensional operators, constraint diagnostics, electric constraint cleaning, parameter sweeps and scientific visualization.
+
+The package is intended as a research and prototyping tool for reduced models of axion electrodynamics around compact objects, gravitational-wave backgrounds and magnetized astrophysical environments.
+
+---
+
+## Main features
+
+- Modular 1D and 2D finite-difference grids.
+- Explicit RK4 time integration.
+- Axion field evolution with configurable potential.
+- Maxwell evolution with axion coupling.
+- Fixed 3+1 background geometries.
+- Flat spacetime, TT gravitational-wave backgrounds and compact-object toy metrics.
+- Isotropic Schwarzschild-inspired metrics.
+- Prescribed rotating magnetic dipole backgrounds.
+- Covariant 2D scalar Laplacian, divergence and Maxwell curl operators.
+- Electric and magnetic constraint diagnostics.
+- Flat and curved electric constraint cleaning.
+- YAML-based configuration system.
+- Parameter sweeps.
+- Diagnostic plots and scientific animations.
+
+---
+
+## Physical system
+
+The evolved axion variables are
+
+$$a(t,x^i), \qquad \Pi(t,x^i).$$
+
+The electromagnetic variables are the Eulerian electric and magnetic fields
+
+$$E^i(t,x^j), \qquad B^i(t,x^j).$$
+
+The axion sector is evolved according to
+
+$$\partial_t a = N\Pi+\beta^i\partial_i a,$$
+
+$$\partial_t\Pi = \beta^i\partial_i\Pi + N \left[ D_iD^i a + K\Pi - D_i(\ln N)D^i a - \frac{dV}{da} - g_{a\gamma}E_iB^i \right].$$
+
+The electromagnetic constraints are
+
+$$D_iB^i=0,$$
+
+$$D_iE^i = \rho - g_{a\gamma}B^iD_i a.$$
+
+The Maxwell evolution equations are
+
+$$\partial_t B^i = \mathcal{L}_\beta B^i + NK B^i - \epsilon^{ijk}D_j(NE_k),$$
+
+$$\partial_t E^i = \mathcal{L}_\beta E^i + NK E^i - \epsilon^{ijk}D_j(NB_k) + Nj^i + g_{a\gamma}N\epsilon^{ijk}E_kD_ja - g_{a\gamma}N\Pi B^i.$$
+
+The default potential is
+
+$$V(a)=\frac{1}{2}m_a^2a^2,$$
+
+but other potentials can be added through the potential interface.
+
+---
+
+## Current scope
+
+The current version supports fixed-background simulations. It does not evolve the Einstein equations.
+
+Implemented levels of physical modelling include:
+
+- flat-space axion and Maxwell tests,
+- axion-Maxwell coupling in 1D and 2D,
+- weak gravitational-wave background examples,
+- axion halos/clouds interacting with electromagnetic backgrounds,
+- prescribed rotating magnetic dipoles,
+- compact-object-inspired fixed metrics,
+- curved 2D axion and Maxwell operators,
+- curved electric constraint cleaning.
+
+The rotating dipole and compact-object cases are reduced models. They are not yet full plasma, force-free, magnetohydrodynamic or dynamical-spacetime simulations.
+
+---
+
+## Installation
+
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv aXemg-env
+source aXemg-env/bin/activate
