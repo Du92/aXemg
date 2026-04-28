@@ -24,7 +24,7 @@ geometry:
 
 physics:
   m_axion: 0.15
-  g_agamma: 0.03
+  g_agamma: 0.005
 
 potential:
   type: massive
@@ -38,9 +38,9 @@ evolution:
   include_axion_em_coupling: true
 
 numerics:
-  dt: 0.005
-  t_final: 45.0
-  output_every: 200
+  dt: 0.002
+  t_final: 2.5
+  output_every: 100
   derivative_order: 2
 
 boundary:
@@ -50,12 +50,12 @@ boundary:
   fields:
     a:
       type: sommerfeld
-      asymptotic_value: 0.0
+      asymptotic_value: 1.0
       wave_speed: 1.0
       center: [60.0, 0.0]
     Pi:
       type: sommerfeld
-      asymptotic_value: 0.0
+      asymptotic_value: 1.0
       wave_speed: 1.0
       center: [60.0, 0.0]
     E:
@@ -80,7 +80,7 @@ initial_data:
   background_Bx: 1.0
   background_By: 0.0
   background_Bz: 0.0
-  em_pulse_amplitude: 0.15
+  em_pulse_amplitude: 0.05
   em_pulse_center: 40.0
   em_pulse_width: 8.0
   em_pulse_polarization: y

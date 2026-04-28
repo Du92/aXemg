@@ -1,0 +1,84 @@
+run:
+  name: curved_axion_2d
+
+grid:
+  ndim: 2
+  shape: [160, 160]
+  bounds:
+    - [-60.0, 60.0]
+    - [-60.0, 60.0]
+  nghost: 3
+
+geometry:
+  type: smooth_compact_object_2d
+  conformal_amplitude: 4.0
+  compactness: 0.25
+  radius: 12.0
+  center: [0.0, 0.0]
+  plane: xy
+  plane_offset: 2.0
+  lapse_floor: 0.2
+
+physics:
+  m_axion: 0.15
+  g_agamma: 0.0
+
+potential:
+  type: massive
+
+sources:
+  type: vacuum
+
+evolution:
+  evolve_axion: true
+  evolve_maxwell: false
+  include_axion_em_coupling: false
+
+numerics:
+  dt: 0.004
+  t_final: 5.0
+  output_every: 100
+  derivative_order: 2
+
+boundary:
+  type: mixed
+  default:
+    type: outflow
+  fields:
+    a:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [0.0, 0.0]
+    Pi:
+      type: sommerfeld
+      asymptotic_value: 0.0
+      wave_speed: 1.0
+      center: [0.0, 0.0]
+
+integrator:
+  type: rk4
+
+initial_data:
+  type: axion_cloud_around_compact_object_2d
+  axion_amplitude: 1.0
+  cloud_radius: 18.0
+  cloud_width: 8.0
+  center: [0.0, 0.0]
+  axion_background: 0.0
+  angular_modulation: 0.15
+  azimuthal_mode: 2
+  Pi_amplitude: 0.1
+
+snapshots:
+  save: true
+  every: 100
+  directory: snapshots
+  prefix: curved_axion_2d
+
+diagnostics:
+  full_2d_report: true
+  center: [0.0, 0.0]
+
+output:
+  directory: outputs/canonical_curved_axion_2d
