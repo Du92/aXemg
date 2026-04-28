@@ -15,10 +15,14 @@ from axion_em_gr.io.config_loader import load_yaml_config, build_simulation_obje
 
 
 CONFIGS_TO_TEST = [
-    "config/schwarzschild_axion_1d.yaml",
-    "config/gw_axion_halo_1d.yaml",
-    "config/curved_axion_maxwell_2d.yaml",
-    "config/curved_constraint_cleaned_2d.yaml",
+    "config/canonical/flat_axion_1d.yaml",
+    "config/canonical/flat_axion_maxwell_1d.yaml",
+    "config/canonical/gw_axion_halo_1d.yaml",
+    "config/canonical/schwarzschild_axion_1d.yaml",
+    "config/canonical/rotating_dipole_axion_2d.yaml",
+    "config/canonical/curved_axion_2d.yaml",
+    "config/canonical/curved_axion_maxwell_2d.yaml",
+    "config/canonical/curved_constraint_cleaned_2d.yaml",
 ]
 
 
